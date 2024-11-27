@@ -1,0 +1,19 @@
+{
+	"name": "basic-shopify-app",
+	"version": "1.0.0",
+	"scripts": {
+		"test": "prettier . --check && eslint **/*.{js,jsx,ts,tsx}",
+		"format": "prettier . --write",
+		"lint": "eslint **/*.{js,jsx,ts,tsx}",
+		"shopify": "shopify",
+		"build": "shopify app build",
+		"dev": "shopify app dev",
+		"info": "shopify app info",
+		"generate": "shopify app generate",
+		"deploy": "shopify app deploy"
+	},
+	"dependencies": {
+		"@shopify/app": "^3.0.0",
+		"@shopify/cli": "^3.0.0"
+	}
+}
