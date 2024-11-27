@@ -23,19 +23,9 @@ const host = process.env.HOST ? process.env.HOST.replace(/https?:\/\//, "") : "l
 
 let hmrConfig;
 if (host === "localhost") {
-	hmrConfig = {
-		protocol: "ws",
-		host: "localhost",
-		port: 64999,
-		clientPort: 64999
-	};
+	hmrConfig = { protocol: "ws", host: "localhost", port: 64999, clientPort: 64999 };
 } else {
-	hmrConfig = {
-		protocol: "wss",
-		host: host,
-		port: process.env.FRONTEND_PORT,
-		clientPort: 443
-	};
+	hmrConfig = { protocol: "wss", host: host, port: process.env.FRONTEND_PORT, clientPort: 443 };
 }
 
 export default defineConfig({

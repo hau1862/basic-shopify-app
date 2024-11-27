@@ -32,12 +32,12 @@ app.get("/api/products/count", async (_req, res) => {
 	});
 
 	const countData = await client.request(`
-    query shopifyProductCount {
-      productsCount {
-        count
-      }
-    }
-  `);
+		query shopifyProductCount {
+			productsCount {
+				count
+			}
+		}
+		`);
 
 	res.status(200).send({ count: countData.data.productsCount.count });
 });
