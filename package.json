@@ -13,7 +13,13 @@
 		"deploy": "shopify app deploy"
 	},
 	"dependencies": {
-		"@shopify/app": "^3.0.0",
-		"@shopify/cli": "^3.0.0"
+		"@shopify/app": "^3.58.2",
+		"@shopify/cli": "^3.70.0"
+	},
+	"devDependencies": {
+		"eslint": "^8.57.1",
+		"eslint-plugin-react": "^7.37.2",
+		"eslint-plugin-spellcheck": "^0.0.20",
+		"prettier": "^3.4.2"
 	}
 }

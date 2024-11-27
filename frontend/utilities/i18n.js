@@ -29,49 +29,6 @@ const SUPPORTED_APP_LOCALES = ["en", "de", "fr"];
 let _userLocale, _polarisTranslations;
 
 /**
- * Retrieves the user's locale from the `locale` request parameter and matches it to supported app locales.
- *
- * Returns the default app locale if the user locale is not supported.
- *
- * @see https://shopify.dev/docs/apps/best-practices/internationalization/getting-started#step-2-get-access-to-the-users-locale
- *
- * @returns {string} User locale
- */
-export function getUserLocale() {
-	if (_userLocale) {
-		return _userLocale;
-	}
-	const url = new URL(window.location.href);
-	const locale = url.searchParams.get("locale") || DEFAULT_APP_LOCALE;
-	_userLocale = match([locale], SUPPORTED_APP_LOCALES, DEFAULT_APP_LOCALE);
-	return _userLocale;
-}
-
-/**
- * Returns Polaris translations that correspond to the user locale.
- *
- * Returns Polaris translations for the default locale if the user locale is not supported.
- *
- * @see https://polaris.shopify.com/components/utilities/app-provider#using-translations
- *
- * @returns {TranslationDictionary} Polaris translations
- */
-export function getPolarisTranslations() {
-	return _polarisTranslations;
-}
-
-/**
- * @async
- * Asynchronously initializes i18next and loads Polaris translations.
- *
- * Intended to be called before rendering the app to ensure translations are present.
- */
-export async function initI18n() {
-	await loadIntlPolyfills();
-	await Promise.all([initI18next(), fetchPolarisTranslations()]);
-}
-
-/**
  * @private
  * @async
  * Asynchronously loads Intl polyfills for the default locale and user locale.
@@ -211,3 +168,48 @@ const POLARIS_LOCALE_DATA = {
 async function loadPolarisTranslations(locale) {
 	return (await POLARIS_LOCALE_DATA[locale]()).default;
 }
+
+export default {
+	/**
+	 * Retrieves the user's locale from the `locale` request parameter and matches it to supported app locales.
+	 *
+	 * Returns the default app locale if the user locale is not supported.
+	 *
+	 * @see https://shopify.dev/docs/apps/best-practices/internationalization/getting-started#step-2-get-access-to-the-users-locale
+	 *
+	 * @returns {string} User locale
+	 */
+	getUserLocale: function () {
+		if (_userLocale) {
+			return _userLocale;
+		}
+		const url = new URL(window.location.href);
+		const locale = url.searchParams.get("locale") || DEFAULT_APP_LOCALE;
+		_userLocale = match([locale], SUPPORTED_APP_LOCALES, DEFAULT_APP_LOCALE);
+		return _userLocale;
+	},
+
+	/**
+	 * Returns Polaris translations that correspond to the user locale.
+	 *
+	 * Returns Polaris translations for the default locale if the user locale is not supported.
+	 *
+	 * @see https://polaris.shopify.com/components/utilities/app-provider#using-translations
+	 *
+	 * @returns {TranslationDictionary} Polaris translations
+	 */
+	getPolarisTranslations: function () {
+		return _polarisTranslations;
+	},
+
+	/**
+	 * @async
+	 * Asynchronously initializes i18next and loads Polaris translations.
+	 *
+	 * Intended to be called before rendering the app to ensure translations are present.
+	 */
+	initI18n: async function () {
+		await loadIntlPolyfills();
+		await Promise.all([initI18next(), fetchPolarisTranslations()]);
+	}
+};

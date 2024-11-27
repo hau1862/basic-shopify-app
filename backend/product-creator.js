@@ -71,13 +71,13 @@ const NOUNS = [
 
 export const DEFAULT_PRODUCTS_COUNT = 5;
 const CREATE_PRODUCTS_MUTATION = `
-  mutation populateProduct($input: ProductInput!) {
-    productCreate(input: $input) {
-      product {
-        id
-      }
-    }
-  }
+mutation populateProduct($input: ProductInput!) {
+	productCreate(input: $input) {
+		product {
+			id
+		}
+	}
+}
 `;
 
 export default async function productCreator(session, count = DEFAULT_PRODUCTS_COUNT) {

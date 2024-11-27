@@ -26,41 +26,41 @@ app.use("/api/*", shopify.validateAuthenticatedSession());
 
 app.use(express.json());
 
-app.get("/api/products/count", async (_req, res) => {
+app.get("/api/products/count", async (_request, response) => {
 	const client = new shopify.api.clients.Graphql({
-		session: res.locals.shopify.session
+		session: response.locals.shopify.session
 	});
 
 	const countData = await client.request(`
-    query shopifyProductCount {
-      productsCount {
-        count
-      }
-    }
-  `);
+		query shopifyProductCount {
+			productsCount {
+				count
+			}
+		}
+		`);
 
-	res.status(200).send({ count: countData.data.productsCount.count });
+	response.status(200).send({ count: countData.data.productsCount.count });
 });
 
-app.post("/api/products", async (_req, res) => {
+app.post("/api/products", async (_request, response) => {
 	let status = 200;
 	let error = null;
 
 	try {
-		await productCreator(res.locals.shopify.session);
+		await productCreator(response.locals.shopify.session);
 	} catch (e) {
 		console.log(`Failed to process products/create: ${e.message}`);
 		status = 500;
 		error = e.message;
 	}
-	res.status(status).send({ success: status === 200, error });
+	response.status(status).send({ success: status === 200, error });
 });
 
 app.use(shopify.cspHeaders());
 app.use(serveStatic(STATIC_PATH, { index: false }));
 
-app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
-	return res
+app.use("/*", shopify.ensureInstalledOnShop(), async (_request, response, _next) => {
+	return response
 		.status(200)
 		.set("Content-Type", "text/html")
 		.send(
