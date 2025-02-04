@@ -1,0 +1,24 @@
+{
+	"name": "basic-shopify-app",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"lint": "eslint **/*.{js,jsx,ts,tsx}",
+		"format": "prettier . --write",
+		"shopify": "shopify",
+		"build": "shopify app build",
+		"dev": "shopify app dev",
+		"info": "shopify app info",
+		"generate": "shopify app generate",
+		"deploy": "shopify app deploy"
+	},
+	"dependencies": {
+		"@shopify/cli": "^3.59.0"
+	},
+	"devDependencies": {
+		"eslint": "^8.57.1",
+		"eslint-plugin-react": "^7.36.1",
+		"eslint-plugin-spellcheck": "^0.0.20",
+		"prettier": "^3.3.3"
+	}
+}

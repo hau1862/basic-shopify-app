@@ -1,0 +1,37 @@
+# Lock Files
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+
+# Environment Configuration
+**/.env
+**/.env.*
+
+# Dependency Directory
+**/node_modules
+
+# Test Coverage Directory
+./coverage
+
+# Ignore Apple MacOS Desktop Services Store
+./.DS_Store
+
+# Logs
+./logs
+./*.log
+
+# Ngrok Tunnel File
+./config/tunnel.pid
+
+# Vite Build Output
+./frontend/dist/
+
+# Extensions Build Output
+./extensions/*/build
+
+# Node Library SQLite Database
+./web/database.sqlite
+
+# Ignore Shopify Files Created During App Dev
+./.shopify/*
+./.shopify.lock

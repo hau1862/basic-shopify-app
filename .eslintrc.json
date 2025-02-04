@@ -1,0 +1,44 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"commonjs": true,
+		"node": true
+	},
+	"ignorePatterns": ["**/node_modules"],
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
+	"plugins": ["react", "spellcheck"],
+	"rules": {
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
+		"linebreak-style": ["error", "windows"],
+		"quotes": ["error", "double"],
+		"semi": ["error", "always"],
+		"no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }],
+		"react/react-in-jsx-scope": "off",
+		"spellcheck/spell-checker": [
+			"error",
+			{
+				"comments": true,
+				"strings": true,
+				"identifiers": true,
+				"lang": "en_US",
+				"skipWords": ["mysql", "sequelize", "readdir", "webpack", "jsx", "tsx", "shopify", "polaris", "frontend", "localhost", "bool", "func"],
+				"skipIfMatch": ["http://[^s]*"],
+				"skipWordIfMatch": ["^foobar.*$"],
+				"minLength": 3
+			}
+		]
+	}
+}
